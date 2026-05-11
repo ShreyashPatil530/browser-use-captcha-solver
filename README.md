@@ -1,17 +1,16 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a0533,50:6d1b7b,100:c2185b&height=230&section=header&text=CAPTCHA%20Solver%20Agent&fontSize=54&fontColor=ffffff&fontAlignY=40&animation=fadeIn&desc=Day%209%20%E2%80%94%20browser-use%20AI%20Agent%20Series&descSize=18&descAlignY=62&descColor=f8bbd9" width="100%"/>
+
 <div align="center">
 
-# 🤖 CAPTCHA Solver Agent
-### Day 9 — Browser-Use AI Agent Series
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=E040FB&center=true&vCenter=true&width=700&lines=AI+Agent+that+solves+reCAPTCHA+automatically;Clicks+%22I+am+not+a+robot%22+checkbox;Handles+image+challenges+%E2%80%94+traffic+lights%2C+crosswalks;Records+full+browser+session+as+MP4+video;Powered+by+browser-use+%2B+OpenRouter)](https://git.io/typing-svg)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/browser--use-0.11.13-FF6B6B?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Playwright-Video_Recording-2EAD33?style=for-the-badge&logo=playwright&logoColor=white"/>
-  <img src="https://img.shields.io/badge/OpenRouter-Free_Tier-412991?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Vision-AI_Powered-F7931E?style=for-the-badge"/>
-</p>
+<br/>
 
-> **An AI agent that autonomously navigates to "I am not a robot" human verification pages, clicks the checkbox, handles image challenges, and records the entire session as a video.**
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![browser-use](https://img.shields.io/badge/browser--use-0.11.13-FF6B6B?style=for-the-badge)
+![Playwright](https://img.shields.io/badge/Playwright-Video_Recording-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-Free_Tier-412991?style=for-the-badge)
+![Vision](https://img.shields.io/badge/Vision-AI_Powered-E040FB?style=for-the-badge)
 
 </div>
 
@@ -19,14 +18,14 @@
 
 ## 📌 What This Project Does
 
-The CAPTCHA Solver Agent opens a real Chromium browser, navigates to Google reCAPTCHA v2, and attempts to solve it step by step:
+The **CAPTCHA Solver Agent** opens a real Chromium browser, navigates to Google reCAPTCHA v2, and attempts to solve it step by step:
 
 1. Navigates to the demo page and waits for full load
-2. Finds and clicks the "I am not a robot" checkbox inside its iframe
+2. Finds and clicks the **"I am not a robot"** checkbox inside its iframe
 3. If an image challenge appears — reads the instruction, clicks matching tiles, clicks Verify
 4. Loops through challenge rounds until solved or max attempts reached
 5. Records the **entire browser session as an `.mp4` video**
-6. Saves results to JSON + CSV, and a final screenshot
+6. Saves results to **JSON + CSV**, and a final screenshot
 
 ---
 
@@ -64,11 +63,11 @@ flowchart TD
     C --> D[CAPTCHA_SITES list\nGoogle reCAPTCHA v2]
     D --> E[CaptchaAgent.solve]
 
-    subgraph agent ["CaptchaAgent — _run_once()"]
+    subgraph agent ["⚙️ CaptchaAgent — _run_once()"]
         E --> F[BrowserProfile\nrecord_video_dir · 1280×720\ndisable_security · load waits]
         F --> G[BrowserSession\nPlaywright Chromium]
         G --> H[📹 Video Recording Starts]
-        H --> I[browser-use Agent\nuse_vision · max 50 steps]
+        H --> I[browser-use Agent\nmax 50 steps]
         I --> J[Navigate to reCAPTCHA URL]
         J --> K[Find checkbox in iframe\nDOM index lookup]
         K --> L[Click checkbox]
@@ -76,12 +75,12 @@ flowchart TD
         M --> N{Image challenge\nappeared?}
         N -->|No| O[Green checkmark ✓\nVERIFIED]
         N -->|Yes| P[Read instruction text\nfrom DOM]
-        P --> Q[Click tiles 0–8\nImage challenge grid]
+        P --> Q[Click image tiles 0–8]
         Q --> R[Click Verify button]
-        R --> S{Solved?\ncheck DOM state}
+        R --> S{Solved?}
         S -->|Yes| O
         S -->|New round| P
-        S -->|3 rounds failed| T[FAILED]
+        S -->|Max attempts| T[FAILED]
         O --> U[done — SUCCESS]
         T --> U2[done — FAILED]
     end
@@ -89,18 +88,18 @@ flowchart TD
     U & U2 --> V[session.kill]
     V --> W[Video finalized → .mp4]
     W --> X[Screenshot saved → .png]
-    X --> Y[Extract result status\nSUCCESS · FAILED · PARTIAL · unknown]
+    X --> Y[Extract result status]
     Y --> Z1[(output/results.json)]
     Y --> Z2[(output/results.csv)]
 
-    style agent fill:#1a1a2e,stroke:#e17055,color:#fff
-    style A fill:#00b894,color:#fff
-    style H fill:#e17055,color:#fff
-    style W fill:#e17055,color:#fff
+    style agent fill:#1a0533,stroke:#E040FB,color:#fff
+    style A fill:#6d1b7b,color:#fff
+    style H fill:#c2185b,color:#fff
+    style W fill:#c2185b,color:#fff
     style Z1 fill:#6c5ce7,color:#fff
     style Z2 fill:#6c5ce7,color:#fff
-    style O fill:#00b894,color:#fff
-    style T fill:#d63031,color:#fff
+    style O fill:#00897b,color:#fff
+    style T fill:#c62828,color:#fff
 ```
 
 ---
@@ -109,53 +108,48 @@ flowchart TD
 
 <table>
 <thead>
-<tr><th>Technology</th><th>Version</th><th>Why Used</th></tr>
+<tr><th width="200">Technology</th><th width="120">Version</th><th>Why Used</th></tr>
 </thead>
 <tbody>
 <tr>
-<td><b>browser-use</b></td>
+<td><b>🤖 browser-use</b></td>
 <td>0.11.13</td>
-<td>Core agent framework — connects an LLM to Playwright browser control. Handles DOM extraction, element clicking, iframe navigation, and built-in MP4 video recording. The agent "thinks" then takes browser actions.</td>
+<td>Core agent framework — connects LLM to Playwright browser. Handles DOM extraction, iframe navigation, element clicking, and built-in MP4 video recording via <code>record_video_dir</code>.</td>
 </tr>
 <tr>
-<td><b>Playwright</b></td>
+<td><b>🎭 Playwright</b></td>
 <td>1.x</td>
-<td>Underlies browser-use. Drives Chromium, handles JavaScript-heavy pages like reCAPTCHA iframes, and captures MP4 session recordings via <code>record_video_dir</code>.</td>
+<td>Underlies browser-use. Drives Chromium, handles JavaScript-heavy reCAPTCHA iframes, and captures MP4 session recordings.</td>
 </tr>
 <tr>
-<td><b>OpenRouter API</b></td>
+<td><b>🔀 OpenRouter API</b></td>
 <td>—</td>
-<td>Unified gateway to 200+ LLM providers. Used here for free-tier model access without paying per provider. Free models: <code>openai/gpt-oss-120b:free</code> (DOM), <code>google/gemma-4-31b-it:free</code> (vision).</td>
+<td>Unified gateway to 200+ LLM providers. Enables free-tier model access — no separate accounts needed per provider.</td>
 </tr>
 <tr>
-<td><b>openai/gpt-oss-120b:free</b></td>
-<td>—</td>
-<td>Primary model. 120B parameter text model — properly follows browser-use's strict JSON tool-calling schema. Handles navigation, checkbox clicking, DOM reading, Verify clicking.</td>
+<td><b>🧠 gpt-oss-120b:free</b></td>
+<td>free</td>
+<td>Primary model. 120B text model — reliably follows browser-use's strict JSON tool-calling schema. Used for navigation, checkbox clicking, DOM reading.</td>
 </tr>
 <tr>
-<td><b>google/gemma-4-31b-it:free</b></td>
-<td>—</td>
-<td>Vision model alternative. 31B multimodal model (text + image) — can actually SEE the traffic light images and select correct tiles. Use when Google AI Studio rate limits allow.</td>
+<td><b>👁️ gemma-4-31b:free</b></td>
+<td>free</td>
+<td>Vision model alternative. 31B multimodal (text + image) — can SEE the traffic light images and select correct tiles. Use when Google AI Studio rate limits allow.</td>
 </tr>
 <tr>
-<td><b>Video Recording</b></td>
-<td>MP4</td>
-<td>browser-use's built-in <code>record_video_dir</code> on <code>BrowserProfile</code> captures every click, scroll, and page change at 1280×720. Saved to <code>videos/&lt;SiteName&gt;/session_HHmmss.mp4</code> after session ends.</td>
+<td><b>🎥 Video Recording</b></td>
+<td>MP4 1280×720</td>
+<td>browser-use's built-in <code>record_video_dir</code> on <code>BrowserProfile</code> captures every action. Saved to <code>videos/&lt;SiteName&gt;/session_HHmmss.mp4</code> after session closes.</td>
 </tr>
 <tr>
-<td><b>asyncio</b></td>
+<td><b>⚡ asyncio</b></td>
 <td>stdlib</td>
-<td>Async runtime required by browser-use. Allows multiple sites to run sequentially in the same event loop.</td>
+<td>Async runtime required by browser-use. Allows multiple sites in the same event loop.</td>
 </tr>
 <tr>
-<td><b>python-dotenv</b></td>
+<td><b>🔐 python-dotenv</b></td>
 <td>1.x</td>
-<td>Loads API keys and model names from <code>.env</code> — keeps credentials out of source code.</td>
-</tr>
-<tr>
-<td><b>pandas</b></td>
-<td>2.x</td>
-<td>DataFrame → CSV export for results summary. One-liner output.</td>
+<td>Loads API keys from <code>.env</code> — keeps credentials out of source code.</td>
 </tr>
 </tbody>
 </table>
@@ -179,10 +173,10 @@ Edit `.env`:
 LLM_PROVIDER=openrouter
 OPENROUTER_API_KEY=sk-or-v1-your-key-here
 
-# Text-only model (works reliably, can't see images):
+# Text-only model (reliable, no image recognition):
 OPENROUTER_MODEL=openai/gpt-oss-120b:free
 
-# Vision model (identifies correct image tiles, may be rate-limited):
+# Vision model (identifies correct image tiles):
 # OPENROUTER_MODEL=google/gemma-4-31b-it:free
 
 HEADLESS=false
@@ -216,16 +210,16 @@ python main.py
 ]
 ```
 
-### Status values
+### Status Values
 
 | Status | Meaning |
 |--------|---------|
-| `success` | Agent called `done()` with SUCCESS |
-| `failed` | Agent called `done()` with FAILED after exhausting attempts |
-| `partial` | Some challenge rounds completed but not fully verified |
-| `unknown` | Agent ran all steps but never called `done()` |
-| `error` | Python exception (browser crash, network error) |
-| `rate_limited` | OpenRouter API 429 — daily free limit reached |
+| ✅ `success` | Agent solved CAPTCHA — `done()` called with SUCCESS |
+| ❌ `failed` | Agent exhausted attempts — `done()` called with FAILED |
+| 🔶 `partial` | Some rounds completed but not fully verified |
+| ❓ `unknown` | Agent ran all steps but never called `done()` |
+| 💥 `error` | Python exception — browser crash or network error |
+| 🚫 `rate_limited` | OpenRouter 429 — daily free limit reached |
 
 ---
 
@@ -236,13 +230,13 @@ Every run produces an **MP4 screen recording** of the full browser session:
 ```
 videos/
 └── Google_reCAPTCHA_v2/
-    └── session_131010.mp4   ← 1280×720, entire session
+    └── session_131010.mp4   ← 1280×720, entire session captured
 ```
 
 - Recording starts when the browser session opens
-- Captures all agent clicks, typing, waits, page loads
-- Finalized after `session.kill()` — 2 second buffer ensures complete write
-- Named `session_HHmmss.mp4` to avoid overwriting previous runs
+- Captures all agent clicks, waits, and page loads
+- Finalized 2 seconds after `session.kill()` — ensures complete write
+- Named `session_HHmmss.mp4` — no overwriting of previous runs
 
 ---
 
@@ -251,58 +245,44 @@ videos/
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `OPENROUTER_MODEL` | `openai/gpt-oss-120b:free` | LLM model |
-| `MAX_AGENT_STEPS` | `50` | Max steps per site (image challenges need many) |
+| `MAX_AGENT_STEPS` | `50` | Max steps per site |
 | `MAX_RETRIES` | `1` | Retries on hard exception only |
-| `WAIT_BETWEEN_ACTIONS` | `1.5s` | Pause between each agent action |
-| `PAGE_LOAD_WAIT` | `3.0s` | Min time to wait after navigation |
-| `NETWORK_IDLE_WAIT` | `5.0s` | Wait for network to go idle |
+| `WAIT_BETWEEN_ACTIONS` | `1.5s` | Pause between agent actions |
+| `PAGE_LOAD_WAIT` | `3.0s` | Min wait after navigation |
+| `NETWORK_IDLE_WAIT` | `5.0s` | Wait for network idle |
 | `HEADLESS` | `false` | Show browser window |
 | `CAPTURE_SCREENSHOTS` | `true` | Save post-run screenshot |
-
----
-
-## 🎯 Key Design Decisions
-
-| Decision | Reason |
-|----------|--------|
-| **`use_vision=False` with text model** | `gpt-oss-120b:free` is text-only — sending screenshots causes 404. DOM-based clicking works for checkbox + tile grid navigation. |
-| **`use_vision=True` with Gemma 4** | When vision model is active, agent takes screenshots and can actually identify traffic light images vs other content. |
-| **`record_video_dir` on BrowserProfile** | browser-use's built-in video recorder — activated directly via `BrowserProfile` param, saves `.mp4` after session close. |
-| **Click ALL tiles when no vision** | Without seeing images, clicking every tile attempts coverage. Google rejects it, but the process is demonstrated. |
-| **50 max steps** | Image challenges can have 3+ rounds, each needing navigate + 9 clicks + verify. 50 steps needed for full coverage. |
-| **3-layer output extraction** | `final_result()` → `is_done action` → `last action` fallback ensures output captured even if agent doesn't call `done()` cleanly. |
-| **Result saved after every site** | JSON + CSV updated after each site — partial runs recoverable if agent crashes mid-list. |
 
 ---
 
 ## 🧩 Supported CAPTCHA Types
 
 | Type | Description | Vision Needed |
-|------|-------------|---------------|
-| `checkbox` | "I am not a robot" checkbox + optional image grid | Optional (DOM for checkbox, vision for grid) |
-| `image` | Pure image selection challenge | Yes |
-| `turnstile` | Cloudflare "Verify you are human" | No (usually auto-passes) |
-| `text` | Distorted text to type in field | Yes |
+|------|-------------|:---:|
+| `checkbox` | "I am not a robot" checkbox + optional image grid | Optional |
+| `image` | Pure image selection challenge | ✅ Yes |
+| `turnstile` | Cloudflare "Verify you are human" | ❌ No |
+| `text` | Distorted text to type in field | ✅ Yes |
 
 ---
 
 ## ⚠️ Limitations
 
-- **Free model rate limits**: OpenRouter free tier = ~50 requests/day. Vision models (Gemma 4) have additional upstream Google AI Studio rate limits.
-- **CAPTCHA accuracy without vision**: Text-only models click all tiles blindly — Google keeps presenting new challenges.
-- **reCAPTCHA bot detection**: Google detects automated browsers. Even with human-like timing, image challenges will appear for non-vision sessions.
-- **Not for production scraping**: Intended for educational/demo purposes only. Always respect a website's Terms of Service.
+- **Free model rate limits** — OpenRouter free tier ~50 requests/day. Vision models (Gemma 4) have additional upstream Google AI Studio rate limits
+- **CAPTCHA accuracy without vision** — Text-only models click all tiles blindly; Google keeps presenting new challenges
+- **Bot detection** — Google flags automated browsers; image challenges appear even with human-like timing
+- **Educational only** — Intended for demo purposes. Always respect a site's Terms of Service
 
 ---
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:c2185b,50:6d1b7b,100:1a0533&height=120&section=footer" width="100%"/>
 
 <div align="center">
-
----
 
 ### 👨‍💻 Author
 
 <a href="https://shreyash-orpin.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/Shreyash_Patil-Portfolio-0A66C2?style=for-the-badge&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Shreyash_Patil-Portfolio-E040FB?style=for-the-badge&logo=vercel&logoColor=white"/>
 </a>
 
 **Shreyash Patil** — Built as Day 9 of a browser-use AI agent series
